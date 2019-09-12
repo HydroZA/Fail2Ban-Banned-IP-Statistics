@@ -2,6 +2,8 @@
 ## Description
 Python program that parses a file created from the output of `sudo fail2ban-client status [JAILNAMEHERE]` and returns statistics on the location of the IP's.
 
+This allows admins to determine where attacks on their servers originate from and take action accordingly.
+
 ## Installation
 1. `pip3 install ip2geotools`
 2. `pip3 install iso3166`
