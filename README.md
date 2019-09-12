@@ -8,6 +8,7 @@ Python program that parses a file created from the output of `sudo fail2ban-clie
 
 ## Usage
 1. Run `sudo fail2ban-client status [JAILNAMEHERE] > ips` in a terminal from the directory of the python executable
+2. Delete all the text up until the first IP address using `nano ips`. See example `ips` file for reference.
 2. `python3 IPAddressParser.py`
 3. Input the amount of IP's to check up to, or press enter to check the entire file. Checking 1000 IP's will take roughly 5 minutes depending on internet speed
 
