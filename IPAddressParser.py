@@ -3,6 +3,8 @@
 from ip2geotools.databases.noncommercial import DbIpCity
 from ip2geotools.errors import InvalidRequestError
 from iso3166 import countries
+import os
+import platform
 
 names = []
 
@@ -18,7 +20,20 @@ def getOccurences(names, entries):
 			found.append(name)
 			d[name] = round(occurences / entries * 100, 2)
 	return d
-	
+
+def getIps():
+	cmd = 'sudo fail2ban-client status sshd > ips'
+	os.system(cmd)
+	print ("Got ips file")
+
+
+if platform.system() == 'Linux':
+	pass
+else:
+	print ("This program is designed to run on linux only, you are using " + platform.system())
+	quit()
+
+getIps() 
 with open("ips") as f:
 	ipStr = f.read()
 
