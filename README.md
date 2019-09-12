@@ -6,8 +6,9 @@ This allows admins to determine where attacks on their servers originate from an
 
 ## Installation
 This program is only designed to work on Linux and is verified to work on Fail2Ban v0.10.2
-1. `pip3 install ip2geotools`
-2. `pip3 install iso3166`
+1. `git clone https://github.com/HydroZA/Fail2Ban-Banned-IP-Statistics`
+2. `pip3 install ip2geotools`
+3. `pip3 install iso3166`
 
 ## Usage
 1. `python3 IPAddressParser.py`
