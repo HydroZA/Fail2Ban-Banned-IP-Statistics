@@ -1,17 +1,17 @@
 # Fail2Ban-Banned-IP-Statistics
 ## Description
-Python program that parses a file created from the output of `sudo fail2ban-client status [JAILNAMEHERE]` and returns statistics on the location of the IP's.
+Python program that parses the output created from the output of `sudo fail2ban-client status [JAILNAMEHERE]` and returns statistics on the location of the IP's.
 
 This allows admins to determine where attacks on their servers originate from and take action accordingly.
 
 ## Installation
+This program is only designed to work on Linux and is verified to work on Fail2Ban v0.10.2
 1. `pip3 install ip2geotools`
 2. `pip3 install iso3166`
 
 ## Usage
-1. Run `sudo fail2ban-client status [JAILNAMEHERE] > ips` in a terminal from the directory of the python executable
-2. Delete all the text up until the first IP address using `nano ips`. See example `ips` file for reference.
-2. `python3 IPAddressParser.py`
+1. `python3 IPAddressParser.py`
+2. Enter the name of the jail to parse
 3. Input the amount of IP's to check up to, or press enter to check the entire file. Checking 1000 IP's will take roughly 5 minutes depending on internet speed
 
 ## Issues
