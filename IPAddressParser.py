@@ -3,7 +3,6 @@
 from ip2geotools.databases.noncommercial import DbIpCity
 from ip2geotools.errors import InvalidRequestError
 from iso3166 import countries
-import os
 import platform
 import subprocess
 
@@ -31,7 +30,7 @@ def getOccurences(names, entries):
 def getIps(jail):
 	cmd = 'sudo fail2ban-client status ' + jail
 	stdoutdata = subprocess.getoutput(cmd)
-	return subprocess.getoutput(cmd)
+	return stdoutdata
 
 while True:
 	try:
