@@ -1,6 +1,6 @@
 # Fail2Ban-Banned-IP-Statistics
 ## Description
-Python program that parses the output created from the output of `sudo fail2ban-client status [JAILNAMEHERE]` and returns statistics on the location of the IP's.
+Python program that parses the output created from `sudo fail2ban-client status [JAILNAMEHERE]` and returns statistics on the location of the IP's.
 
 This allows admins to determine where attacks on their servers originate from and take action accordingly.
 
