@@ -5,6 +5,7 @@ Python program that parses the output created from the output of `sudo fail2ban-
 This allows admins to determine where attacks on their servers originate from and take action accordingly.
 
 ## Installation
+This program is only designed to work on Linux and is verified to work on Fail2Ban v0.10.2
 1. `pip3 install ip2geotools`
 2. `pip3 install iso3166`
 
