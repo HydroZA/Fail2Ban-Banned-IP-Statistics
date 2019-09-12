@@ -5,6 +5,13 @@ from ip2geotools.errors import InvalidRequestError
 from iso3166 import countries
 import os
 import platform
+import subprocess
+
+if platform.system() == 'Linux':
+	pass
+else:
+	print ("This program is designed to run on linux only, you are using " + platform.system())
+	quit()
 
 names = []
 
@@ -12,7 +19,7 @@ def getOccurences(names, entries):
 	found = []
 	d = {}
 
-	for name in names:	
+	for name in names:
 		occurences = names.count(name)
 		if (name in found):
 			pass
@@ -21,27 +28,27 @@ def getOccurences(names, entries):
 			d[name] = round(occurences / entries * 100, 2)
 	return d
 
-def getIps():
-	cmd = 'sudo fail2ban-client status sshd > ips'
-	os.system(cmd)
-	print ("Got ips file")
+def getIps(jail):
+	cmd = 'sudo fail2ban-client status ' + jail
+	stdoutdata = subprocess.getoutput(cmd)
+	return subprocess.getoutput(cmd)
 
+while True:
+	try:
+		ipStr = getIps(input("Enter the name of the jail to parse: ")) 
+		ips = ipStr.split(' ')
+		ips[0:34] = [] # Delete the fluff and keep only the list of IPs
+		ips[0] = ips[0][6:] # ips[0] has text at the start of it, lets remove that
+		print("\nSuccessfully retrieved IPs from fail2ban")
+		break
+	except IndexError:
+		print ("\nUnable to parse IPs for the selected jail. Ensure jail name is identical to Fail2Ban")
+		continue
 
-if platform.system() == 'Linux':
-	pass
-else:
-	print ("This program is designed to run on linux only, you are using " + platform.system())
-	quit()
-
-getIps() 
-with open("ips") as f:
-	ipStr = f.read()
-
-ips = ipStr.split(' ')
 ipsLen = len(ips)
 ips[ipsLen-1] = ips[ipsLen-1].strip() #last entry in the array always has redundant newlines 
 
-print("\nFile contains " + str(ipsLen) + " IP addresses")
+print("Your Fail2Ban has " + str(ipsLen) + " IP addresses listed as banned")
 while True:
 	try:
 		entries = input ("How many IP entries would you like to check? Press Enter for all. 0-")
