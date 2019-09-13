@@ -7,7 +7,8 @@ import platform
 import subprocess
 
 if platform.system() != 'Linux':
-	print ("This program is designed to run on linux only, you are using " + platform.system())
+	print ("This program is designed to run on linux only, you are using " 
+		+ platform.system())
 	quit()
 
 names = []
@@ -74,7 +75,7 @@ for ip in ips:
 		ip = ip.strip() # Remove all whitespace
 		response = DbIpCity.get(ip, api_key="free") # Get all location information on IP
 		country = str(countries.get(response.country)) # convert country code to full country name using ISO3166 library 
-		fullNames = country.split('\'') # $country is a long string with other information in it, lets isolate the different parts of it 
+		fullNames = country.split('\'') # isolate the different parts of $country 
 		names.append(fullNames[1]) # Append only the country name to the names[]
 	except KeyError:
 		print(ip + " - country not found")
@@ -96,5 +97,7 @@ i = 0
 for country in countryList:
 	print (country + " = " + str(percentages[i]) + "%")
 	i+=1
-print ("\nThe most common country is " + countryList[0] + " with " + str(percentages[0]) + "%")
-print ("The least common country is " + countryList[len(countryList)-1] + " with " + str(percentages[len(percentages)-1]) + "%")
+print ("\nThe most common country is " + countryList[0] + " with " 
+	+ str(percentages[0]) + "%")
+print ("The least common country is " + countryList[len(countryList)-1] 
+	+ " with " + str(percentages[len(percentages)-1]) + "%")
