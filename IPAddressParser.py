@@ -44,7 +44,7 @@ while True:
 		continue
 
 ips_len = len(ips)
-#test3
+#testmacsigning
 print("Your Fail2Ban has " + str(ips_len) + " IP addresses listed as banned")
 while True:
 	try:
