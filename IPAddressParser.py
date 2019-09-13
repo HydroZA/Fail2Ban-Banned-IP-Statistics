@@ -6,9 +6,7 @@ from iso3166 import countries
 import platform
 import subprocess
 
-if platform.system() == 'Linux':
-	pass
-else:
+if platform.system() != 'Linux':
 	print ("This program is designed to run on linux only, you are using " + platform.system())
 	quit()
 
@@ -20,7 +18,7 @@ def getOccurences(names, entries):
 
 	for name in names:
 		occurences = names.count(name)
-		if (name in found):
+		if name in found:
 			pass
 		else:
 			found.append(name)
@@ -45,7 +43,6 @@ while True:
 		continue
 
 ipsLen = len(ips)
-ips[ipsLen-1] = ips[ipsLen-1].strip() #last entry in the array always has redundant newlines 
 
 print("Your Fail2Ban has " + str(ipsLen) + " IP addresses listed as banned")
 while True:
@@ -74,15 +71,15 @@ while True:
 progress = 0
 for ip in ips:
 	try:
-		ip = ip.strip()
-		response = DbIpCity.get(ip, api_key="free")
-		country = str(countries.get(response.country))
-		fullNames = country.split('\'')
-		names.append(fullNames[1])
+		ip = ip.strip() # Remove all whitespace
+		response = DbIpCity.get(ip, api_key="free") # Get all location information on IP
+		country = str(countries.get(response.country)) # convert country code to full country name using ISO3166 library 
+		fullNames = country.split('\'') # $country is a long string with other information in it, lets isolate the different parts of it 
+		names.append(fullNames[1]) # Append only the country name to the names[]
 	except KeyError:
 		print(ip + " - country not found")
 	except InvalidRequestError:
-		print ("Location DB is down, please try again later")
+		print ("Location DB is down or you have been timed out, please try again later")
 		quit()
 	progress+=1
 	print ("Progress: " + str(round((progress/ipsLen)*100)) + "%", end="\r")
