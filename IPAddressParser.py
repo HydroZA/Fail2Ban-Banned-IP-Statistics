@@ -45,7 +45,7 @@ while True:
 		continue
 
 ips_len = len(ips)
-#testmacsigning
+
 print("Your Fail2Ban has " + str(ips_len) + " IP addresses listed as banned")
 while True:
 	try:
@@ -83,6 +83,7 @@ for ip in ips:
 	except InvalidRequestError:
 		print ("Location DB is down or you have been timed out, please try again later")
 		quit()
+
 	progress+=1
 	print ("Progress: " + str(round((progress/ips_len) * 100)) + "%", end="\r")
 
@@ -118,7 +119,7 @@ while True:
 			f.write("The least common country is " + country_list[len(country_list)-1] 
 				+ " with " + str(percentages[len(percentages)-1]) + "%\n")
 			f.close()
-			print ("Successfully created file \"" + date + "\".stats")
+			print ("Successfully created file \"" + date + ".stats\"")
 			break
 	elif write_to_file.upper() == 'N':	
 		break
