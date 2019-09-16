@@ -83,7 +83,7 @@ for ip in ips:
 		print ("Location DB is down or you have been timed out, please try again later")
 		quit()
 	progress+=1
-	print ("Progress: " + str(round((progress/ips_len)*100)) + "%", end="\r")
+	print ("Progress: " + str(round((progress/ips_len) * 100)) + "%", end="\r")
 
 d = GetOccurences(names, int(entries))
 
@@ -111,9 +111,9 @@ while True:
 				f.write( ("[" + str(i+1) + "] " + country + " = " + str(percentages[i]) + "%\n"))
 				i+=1
 			f.write("\nThe most common country is " + country_list[0] + " with " 
-					+ str(percentages[0]) + "%\n")
+				+ str(percentages[0]) + "%\n")
 			f.write("The least common country is " + country_list[len(country_list)-1] 
-					+ " with " + str(percentages[len(percentages)-1]) + "%\n")
+				+ " with " + str(percentages[len(percentages)-1]) + "%\n")
 			f.close()
 			print ("Successfully created file \"output\"")
 			break
