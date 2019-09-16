@@ -14,6 +14,7 @@ This program is only designed to work on Linux and is verified to work on Fail2B
 1. `python3 IPAddressParser.py`
 2. Enter the name of the jail to parse
 3. Input the amount of IP's to check up to, or press enter to check the entire file. Checking 1000 IP's will take roughly 5 minutes depending on internet speed
+4. After all IP's have been processed, you will be asked if you want to save the output to a file. Type 'Y' for yes or 'N' for no.
 
 ## Issues
 Currently, I've determined the `ip2geotools` package only allows roughly 1000 IP's to be queried before it will time you out for a few hours. I believe its possible to purchase a commercial license that will enable the ability to query more IPs.
