@@ -3,6 +3,7 @@
 from ip2geotools.databases.noncommercial import DbIpCity
 from ip2geotools.errors import InvalidRequestError
 from iso3166 import countries
+from datetime import datetime
 import platform
 import subprocess
 
@@ -105,7 +106,9 @@ print ("The least common country is " + country_list[len(country_list)-1]
 while True:
 	write_to_file = input("\nWould you like to write the output to a file? (Y/N) ")
 	if write_to_file.upper() == 'Y':
-		with open("output", "w") as f:
+		date = str(datetime.now()) # Get time and date to append to output file
+		date = date[0:10]
+		with open(date + ".stats", "w") as f:
 			i = 0
 			for country in country_list:
 				f.write( ("[" + str(i+1) + "] " + country + " = " + str(percentages[i]) + "%\n"))
@@ -115,7 +118,7 @@ while True:
 			f.write("The least common country is " + country_list[len(country_list)-1] 
 				+ " with " + str(percentages[len(percentages)-1]) + "%\n")
 			f.close()
-			print ("Successfully created file \"output\"")
+			print ("Successfully created file \"" + date + "\".stats")
 			break
 	elif write_to_file.upper() == 'N':	
 		break
