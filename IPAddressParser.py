@@ -108,7 +108,7 @@ while True:
 	write_to_file = input("\nWould you like to write the output to a file? (Y/N) ")
 	if write_to_file.upper() == 'Y':
 		date = str(datetime.now()) # Get time and date to append to output file
-		date = date[0:10]
+		date = date[0:10] # Isolate only the date
 		with open(date + ".stats", "w") as f:
 			i = 0
 			for country in country_list:
@@ -119,8 +119,8 @@ while True:
 			f.write("The least common country is " + country_list[len(country_list)-1] 
 				+ " with " + str(percentages[len(percentages)-1]) + "%\n")
 			f.close()
-			print ("Successfully created file \"" + date + ".stats\"")
-			break
+		print ("Successfully created file \"" + date + ".stats\"")
+		break
 	elif write_to_file.upper() == 'N':	
 		break
 	else:
