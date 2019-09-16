@@ -95,9 +95,30 @@ percentages = [x[1] for x in sorted_dictionary]
 
 i = 0
 for country in country_list:
-	print (country + " = " + str(percentages[i]) + "%")
+	print ("[" + str(i+1) + "] " + country + " = " + str(percentages[i]) + "%")
 	i+=1
 print ("\nThe most common country is " + country_list[0] + " with " 
 	+ str(percentages[0]) + "%")
 print ("The least common country is " + country_list[len(country_list)-1] 
 	+ " with " + str(percentages[len(percentages)-1]) + "%")
+
+while True:
+	write_to_file = input("\nWould you like to write the output to a file? (Y/N) ")
+	if write_to_file.upper() == 'Y':
+		with open("output", "w") as f:
+			i = 0
+			for country in country_list:
+				f.write( ("[" + str(i+1) + "] " + country + " = " + str(percentages[i]) + "%\n"))
+				i+=1
+			f.write("\nThe most common country is " + country_list[0] + " with " 
+					+ str(percentages[0]) + "%\n")
+			f.write("The least common country is " + country_list[len(country_list)-1] 
+					+ " with " + str(percentages[len(percentages)-1]) + "%\n")
+			f.close()
+			print ("Successfully created file \"output\"")
+			break
+	elif write_to_file.upper() == 'N':	
+		break
+	else:
+		print ("Invalid input")
+print ("Thanks for using Fail2Ban IP Address Parser!")
